@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebP Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>WebP Converter</h1>
+            <p>Convert images to WebP format with customizable settings</p>
+        </header>
+
+        <!-- Notification banner -->
+        <div class="notification" id="notification">
+            <div class="notification-content">
+                <span class="notification-message" id="notificationMessage"></span>
+                <button class="notification-close" id="notificationClose">&times;</button>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <div class="left-panel">
+                <!-- Upload Section -->
+                <section class="upload-section">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <div class="upload-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                            </div>
+                            <h3>Drop your images here</h3>
+                            <p>or click to select files</p>
+                            <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                        </div>
+                        <div class="upload-overlay" id="uploadOverlay">
+                            <div class="upload-overlay-content">
+                                <div class="upload-icon">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="7,10 12,15 17,10"/>
+                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                </div>
+                                <h3>Drop files to convert</h3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Progress Section -->
+                <section class="progress-section" id="progressSection" style="display: none;">
+                    <div class="progress-container">
+                        <h3>Converting images...</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">0%</div>
+                    </div>
+                </section>
+
+                <!-- Results Section -->
+                <section class="results-section">
+                    <div class="results-header">
+                        <h2>Converted Images</h2>
+                        <button class="btn btn-primary" id="openFolderBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2l5 0 2 3h9a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            Open Folder
+                        </button>
+                    </div>
+                    <div class="results-grid" id="resultsGrid">
+                        <!-- Converted images will be displayed here -->
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-panel">
+                <!-- Configuration Section -->
+                <section class="config-section">
+                    <h3>Settings</h3>
+
+                    <div class="config-group">
+                        <label class="config-label" for="qualityInput">Quality</label>
+                        <input type="range" id="qualityInput" class="config-input" min="1" max="100" value="100">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #64748b; margin-top: 4px;">
+                            <span>1 (smallest)</span>
+                            <span id="qualityValue">100</span>
+                            <span>100 (best)</span>
+                        </div>
+                    </div>
+
+                    <div class="config-group">
+                        <label class="config-label" for="compressionType">Compression</label>
+                        <select id="compressionType" class="config-select">
+                            <option value="lossless" selected>Lossless (better quality)</option>
+                            <option value="lossy">Lossy (smaller files)</option>
+                        </select>
+                    </div>
+
+                    <div class="config-group">
+                        <label class="config-label" for="effort">Effort Level</label>
+                        <select id="effort" class="config-select">
+                            <option value="0">0 - Fastest</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4 - Default</option>
+                            <option value="5">5</option>
+                            <option value="6" selected>6 - Slowest/Best</option>
+                        </select>
+                    </div>
+
+                    <div class="config-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="alphaQuality" class="config-checkbox" checked>
+                            Preserve alpha transparency
+                        </label>
+                    </div>
+
+                    <div class="config-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="smartSubsample" class="config-checkbox" checked>
+                            Smart subsampling
+                        </label>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

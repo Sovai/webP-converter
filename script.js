@@ -2,8 +2,8 @@ const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
 
-const inputDirectory = "./input-images"; // Directory containing images
-const outputDirectory = "./output-images"; // Directory to store compressed images
+const inputDirectory = "./input"; // Directory containing
+const outputDirectory = "./output"; // Directory to store compressed
 
 // Ensure output directory exists
 if (!fs.existsSync(outputDirectory)) {
@@ -46,7 +46,7 @@ fs.readdir(inputDirectory, (err, files) => {
 
     // Convert and compress image
     sharp(inputFilePath)
-      .toFormat("webp", { quality: 80 }) // Change to { quality: 80 } for lossy compression
+      .toFormat("webp", { quality: 100 }) // Change to { quality: 80 } for lossy compression
       .toFile(outputFilePath)
       .then(() => {
         console.log(`Converted ${file} to WebP`);

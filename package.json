@@ -1,15 +1,32 @@
 {
-  "name": "my-image-converter",
+  "name": "webp-converter-gui",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A GUI application for converting images to WebP format",
+  "main": "main.js",
   "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "rebuild": "electron-rebuild",
+    "prebuild": "npm run rebuild",
+    "build:mac": "npm run prebuild && electron-packager . WebP-Converter --platform=darwin --arch=x64,arm64 --out=dist/ --overwrite",
+    "package:mac": "npm run prebuild && electron-packager . WebP-Converter --platform=darwin --arch=x64 --out=dist/ --overwrite",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "webp",
+    "converter",
+    "gui",
+    "electron"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emnapi/runtime": "^1.5.0",
     "sharp": "^0.33.0"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.0.1",
+    "electron": "^32.0.0",
+    "electron-packager": "^17.1.2"
   }
 }
